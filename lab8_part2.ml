@@ -117,10 +117,10 @@ module MakeStack (Element: SERIALIZE) : (STACK with type element = Element.t) =
       snd (pop_helper s)
 
     let rec map (f : element -> element) (s : stack) : stack =
-      f (top s) :: map f (pop s) 
+      List.map
 
     let rec filter (f : element -> bool) (s : stack) : stack =
-      if f (top s) then filter f (pop s)
+      List.filter
 
     let rec fold_left (f : 'a -> element -> 'a) (init : 'a) (s : stack) : 'a =
       fold_left f init (top s) (pop s)
